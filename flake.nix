@@ -1,6 +1,7 @@
 { 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/staging-next";
+    #nixpkgs.url = "github:NixOS/nixpkgs/staging-next";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
   };
 
   outputs = { self, nixpkgs }: let
@@ -11,13 +12,13 @@
   in {
     packages.x86_64-linux.tiny-dfr = pkgs.rustPlatform.buildRustPackage rec {
       pname = "tiny-dfr";
-      version = "e66aa1b2d19bb01acacf82d4ea16504a42e5d794";
+      version = "8a5d413cb1dbe2a25b77a9e7f3cb5b9c88ef3ffb";
       
       src = pkgs.fetchFromGitHub {
         owner = "kekrby";
         repo = "tiny-dfr";
         rev = "${version}";
-        hash = "sha256-oaWk3CA9zZDjh7OgHEa+snVgt1JMnAu9c5m6Yds1Z6M=";
+        hash = "sha256-l4D7aePz/CYpkRorrvsgIYrvSzoZl59OGcFGJqqJftk=";
       };
     
       cargoLock.lockFile = "${src}/Cargo.lock";
