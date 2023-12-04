@@ -64,10 +64,14 @@
       	enable = true;
       	description = "Tiny Apple silicon touch bar daemon";
       	after = [ "systemd-user-sessions.service" "getty@tty1.service" "plymouth-quit.service" "systemd-logind.service" ];
+      	bindsTo = [ "dev-tiny_dfr_display.device" "dev-tiny_dfr_backlight.device" ];
       	startLimitIntervalSec = 30;
       	startLimitBurst = 2;
       	script = "${self.packages.x86_64-linux.tiny-dfr}/bin/tiny-dfr";
       	restartTriggers = [ self.packages.x86_64-linux.tiny-dfr ];
+      };
+      config.environment.etc."tiny-dfr/config.toml" = {
+      	source = "${self.packages.x86_64-linux.tiny-dfr}/share/tiny-dfr/config.toml";
       };
     });
     
